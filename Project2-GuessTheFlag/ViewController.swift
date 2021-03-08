@@ -26,6 +26,8 @@ class ViewController: UIViewController {
         button3.layer.borderColor = UIColor.lightGray.cgColor
         countries += ["estonia","france","germany","ireland","italy","monaco","nigeria","poland","russia","spain","uk","us"]
         askQuestion(action: nil)
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showScoreTapped))
     }
     
     func restartGame(action: UIAlertAction!){
@@ -76,6 +78,12 @@ class ViewController: UIViewController {
         }
         ac.addAction(UIAlertAction(title:"Continue", style: .default, handler: askQuestion))
         present(ac, animated: true)
+    }
+    
+    @objc func showScoreTapped(){
+        let vc = UIActivityViewController(activityItems: ["Your score is \(score)"], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
 
